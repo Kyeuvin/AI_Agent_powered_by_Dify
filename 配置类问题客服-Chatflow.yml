@@ -1,0 +1,1267 @@
+app:
+  description: 针对配置类问题的客服试点
+  icon: carrot
+  icon_background: '#E4FBCC'
+  mode: advanced-chat
+  name: 配置类问题客服-Chatflow
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/tongyi:0.0.25@2b6f549753c8fe1b8d0bda620eb0611b549d6d809da691baf0692ee75f6c507f
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables:
+  - description: ''
+    id: 4e151f7b-0ccf-4421-9f55-338bc002ba5a
+    name: CN
+    selector:
+    - conversation
+    - CN
+    value: ''
+    value_type: string
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - document
+      - image
+      - audio
+      - video
+      allowed_file_upload_methods:
+      - remote_url
+      - local_file
+      enabled: true
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: 您好，这里是东立配置客服，很高兴为您服务。请问您的配置号是？
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: if-else
+      id: 1754442982613-source-1754450340627-target
+      selected: false
+      source: '1754442982613'
+      sourceHandle: source
+      target: '1754450340627'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 1754450340627-true-1754450386761-target
+      selected: false
+      source: '1754450340627'
+      sourceHandle: 'true'
+      target: '1754450386761'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: if-else
+      id: 1754445141843-source-1754446270318-target
+      selected: false
+      source: '1754445141843'
+      sourceHandle: source
+      target: '1754446270318'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: parameter-extractor
+      id: 1754454653105-true-1754445141843-target
+      selected: false
+      source: '1754454653105'
+      sourceHandle: 'true'
+      target: '1754445141843'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: assigner
+      id: 1754446270318-false-17544543946810-target
+      selected: false
+      source: '1754446270318'
+      sourceHandle: 'false'
+      target: '17544543946810'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: answer
+      id: 17544543946810-source-17544463372970-target
+      selected: false
+      source: '17544543946810'
+      sourceHandle: source
+      target: '17544463372970'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: answer
+        targetType: answer
+      id: 17544463372970-source-1754454757176-target
+      selected: false
+      source: '17544463372970'
+      sourceHandle: source
+      target: '1754454757176'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1754457699663-source-1754457901502-target
+      selected: false
+      source: '1754457699663'
+      sourceHandle: source
+      target: '1754457901502'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: question-classifier
+      id: 1754446270318-true-1754458521294-target
+      selected: false
+      source: '1754446270318'
+      sourceHandle: 'true'
+      target: '1754458521294'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: question-classifier
+      id: 1754454653105-false-1754458521294-target
+      selected: false
+      source: '1754454653105'
+      sourceHandle: 'false'
+      target: '1754458521294'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: question-classifier
+      id: 1754458521294-1-1754458428398-target
+      selected: false
+      source: '1754458521294'
+      sourceHandle: '1'
+      target: '1754458428398'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: llm
+      id: 1754458521294-1754458602862-1754457699663-target
+      selected: false
+      source: '1754458521294'
+      sourceHandle: '1754458602862'
+      target: '1754457699663'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: parameter-extractor
+      id: 1754458521294-2-17544590724160-target
+      selected: false
+      source: '1754458521294'
+      sourceHandle: '2'
+      target: '17544590724160'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: if-else
+      id: 17544590724160-source-17544590751370-target
+      selected: false
+      source: '17544590724160'
+      sourceHandle: source
+      target: '17544590751370'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: assigner
+      id: 17544590751370-false-17544590929760-target
+      selected: false
+      source: '17544590751370'
+      sourceHandle: 'false'
+      target: '17544590929760'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: answer
+      id: 17544590929760-source-17544592646160-target
+      selected: false
+      source: '17544590929760'
+      sourceHandle: source
+      target: '17544592646160'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: answer
+      id: 1754458428398-1-1754459401168-target
+      selected: false
+      source: '1754458428398'
+      sourceHandle: '1'
+      target: '1754459401168'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: answer
+      id: 1754458428398-2-1754459404453-target
+      selected: false
+      source: '1754458428398'
+      sourceHandle: '2'
+      target: '1754459404453'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: answer
+      id: 1754458428398-1754458445422-1754459407704-target
+      selected: false
+      source: '1754458428398'
+      sourceHandle: '1754458445422'
+      target: '1754459407704'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 17545302573570-source-1754530310208-target
+      selected: false
+      source: '17545302573570'
+      sourceHandle: source
+      target: '1754530310208'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: knowledge-retrieval
+      id: 17544590751370-true-1754531313654-target
+      selected: false
+      source: '17544590751370'
+      sourceHandle: 'true'
+      target: '1754531313654'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1754531313654-source-17545302573570-target
+      selected: false
+      source: '1754531313654'
+      sourceHandle: source
+      target: '17545302573570'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: knowledge-retrieval
+      id: 1754458521294-1754531618764-1754531658293-target
+      selected: false
+      source: '1754458521294'
+      sourceHandle: '1754531618764'
+      target: '1754531658293'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1754531658293-source-1754531675324-target
+      selected: false
+      source: '1754531658293'
+      sourceHandle: source
+      target: '1754531675324'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1754531675324-source-1754531826838-target
+      selected: false
+      source: '1754531675324'
+      sourceHandle: source
+      target: '1754531826838'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: if-else
+      id: 1754450340627-false-1754454653105-target
+      selected: false
+      source: '1754450340627'
+      sourceHandle: 'false'
+      target: '1754454653105'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 54
+      id: '1754442982613'
+      position:
+        x: 786.3907647366703
+        y: 196.35843082421206
+      positionAbsolute:
+        x: 786.3907647366703
+        y: 196.35843082421206
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        instruction: 我希望你从{{#sys.query#}}或{{#sys.files#}}中找到输入的配置号，配置号的格式通常是一串字母或数字的组合，你只需要告诉我配置号，如果没有找到，则告诉我“无”。
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-vl-max-latest
+          provider: langgenius/tongyi/tongyi
+        parameters:
+        - description: 配置号信息
+          name: configurationNum
+          required: false
+          type: string
+        query:
+        - sys
+        - query
+        reasoning_mode: prompt
+        selected: false
+        title: 参数提取器
+        type: parameter-extractor
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - sys
+            - files
+          enabled: true
+      height: 90
+      id: '1754445141843'
+      position:
+        x: 1621.8924430032816
+        y: 329.59586177095724
+      positionAbsolute:
+        x: 1621.8924430032816
+        y: 329.59586177095724
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 613e07a4-2ebe-42a1-81a2-cf105b8c0db3
+            value: 无
+            varType: string
+            variable_selector:
+            - '1754445141843'
+            - configurationNum
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 126
+      id: '1754446270318'
+      position:
+        x: 1880.680492089227
+        y: 329.59586177095724
+      positionAbsolute:
+        x: 1880.680492089227
+        y: 329.59586177095724
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: 您的配置号是{{#conversation.CN#}}, 您可在[东立同行网](http://www.twflight.com/)-客户端中查看您的账户信息。
+        desc: ''
+        selected: false
+        title: 直接回复 2 (1)
+        type: answer
+        variables: []
+      height: 137
+      id: '17544463372970'
+      position:
+        x: 2975
+        y: 283
+      positionAbsolute:
+        x: 2975
+        y: 283
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 3ee246d6-c31c-4c9c-9847-94a28a2a2c26
+            value: 转人工
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          - comparison_operator: contains
+            id: 740fe2b7-889a-4458-9024-c7d6dc27c1ed
+            value: 人工
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          - comparison_operator: contains
+            id: e2c817c0-3666-4fbf-a7aa-0790ebfb1049
+            value: '@客服'
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          id: 'true'
+          logical_operator: or
+        desc: ''
+        selected: false
+        title: 条件分支 2
+        type: if-else
+      height: 178
+      id: '1754450340627'
+      position:
+        x: 1059.8437548975767
+        y: 196.35843082421206
+      positionAbsolute:
+        x: 1059.8437548975767
+        y: 196.35843082421206
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: 已转接人工客服
+        desc: ''
+        selected: false
+        title: 直接回复 4
+        type: answer
+        variables: []
+      height: 102
+      id: '1754450386761'
+      position:
+        x: 1352.7782375817837
+        y: 220.77574685526747
+      positionAbsolute:
+        x: 1352.7782375817837
+        y: 220.77574685526747
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1754445141843'
+          - configurationNum
+          variable_selector:
+          - conversation
+          - CN
+          write_mode: over-write
+        selected: false
+        title: 变量赋值 (1)
+        type: assigner
+        version: '2'
+      height: 88
+      id: '17544543946810'
+      position:
+        x: 2641
+        y: 283
+      positionAbsolute:
+        x: 2641
+        y: 283
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: empty
+            id: 9428e98c-a9fc-4e5f-acfe-f83a4eb1b08b
+            value: ''
+            varType: string
+            variable_selector:
+            - conversation
+            - CN
+          - comparison_operator: contains
+            id: 8f6f7ecd-edfd-4e22-a0fe-6507dfaa90d4
+            value: 无
+            varType: string
+            variable_selector:
+            - conversation
+            - CN
+          id: 'true'
+          logical_operator: or
+        desc: ''
+        selected: false
+        title: 条件分支 3
+        type: if-else
+      height: 152
+      id: '1754454653105'
+      position:
+        x: 1352.7782375817837
+        y: 329.59586177095724
+      positionAbsolute:
+        x: 1352.7782375817837
+        y: 329.59586177095724
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: 请问您要办什么业务？
+        desc: ''
+        selected: false
+        title: 直接回复 4
+        type: answer
+        variables: []
+      height: 102
+      id: '1754454757176'
+      position:
+        x: 3309
+        y: 283
+      positionAbsolute:
+        x: 3309
+        y: 283
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-vl-max-latest
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: 5569cdf2-612d-4f02-8b64-d1209249b5f4
+          role: system
+          text: "# Role: 企业微信客服智能助手\n\n## Profile\n- language: 中文\n- description:\
+            \ 一个专注于为企业微信客户提供高效、专业服务的智能助手，能够根据用户输入和知识库内容生成简洁、清晰的回复。\n- background:\
+            \ 随着企业微信的广泛应用，企业和客户之间的沟通需求日益增加。本角色旨在通过智能化手段提升客户服务效率，降低人工客服压力。\n- personality:\
+            \ 友好、耐心、专业且反应迅速。\n- expertise: 客服对话管理、信息检索、自然语言处理、知识库整合。\n- target_audience:\
+            \ 使用企业微信的企业客服团队及终端客户。\n\n## Skills\n\n1. 客服核心技能\n   - 快速响应: 能够在短时间内理解用户问题并提供准确解答。\n\
+            \   - 知识库整合: 熟练调用企业提供的知识库内容为用户提供精准答案。\n   - 多轮对话管理: 支持复杂场景下的多轮交互，确保上下文连贯性。\n\
+            \   - 情绪识别与应对: 能够感知用户情绪并调整回复语气，避免冲突升级。\n\n2. 辅助技能类别\n   - 信息提炼: 将复杂或冗长的信息压缩成简洁明了的内容。\n\
+            \   - 自学习能力: 根据历史对话数据不断优化回复策略。\n   - 数据安全保障: 严格遵守隐私保护政策，不泄露任何敏感信息。\n \
+            \  - 多渠道支持: 兼容多种沟通形式，如文字、图片、文件等。\n\n## Rules\n\n1. 基本原则：\n   - 准确性优先:\
+            \ 回复必须基于事实和知识库内容，杜绝猜测性回答。\n   - 简洁为主: 控制回复长度，以最简短的方式传达关键信息。\n   - 用户导向:\
+            \ 一切行为围绕提升用户体验展开，避免让用户感到困惑。\n   - 合规合法: 所有回复需符合相关法律法规以及公司内部规定。\n\n2. 行为准则：\n\
+            \   - 礼貌待人: 不论用户态度如何，始终保持友好和尊重。\n   - 主动引导: 当用户问题模糊时，应主动提问以获取更多信息。\n \
+            \  - 避免争执: 遇到争议性话题时，采取中立立场并尝试平息矛盾。\n   - 及时反馈: 若无法立即解决问题，应告知用户后续处理时间表。\n\
+            \n3. 限制条件：\n   - 不涉及敏感话题: 不讨论政治、宗教或其他可能引发争议的主题。\n   - 遵守权限范围: 只能访问授权的知识库内容，不可越权操作。\n\
+            \   - 无超纲承诺: 不得对未确认事项做出保证或承诺。\n   - 防止滥用: 拒绝参与任何形式的恶意刷屏或骚扰行为。\n\n## Workflows\n\
+            \n- 目标: 提供高质量的客户服务体验，快速解决用户问题。\n- 步骤 1: 接收用户输入，分析问题意图并匹配知识库相关内容。\n- 步骤\
+            \ 2: 根据匹配结果生成初步回复，并进行语法和逻辑校验。\n- 步骤 3: 发送回复给用户，同时记录对话日志用于后续优化。\n- 预期结果:\
+            \ 用户获得满意解答，整体服务效率显著提升。\n\n## Initialization\n作为企业微信客服智能助手，你必须遵守上述Rules，按照Workflows执行任务。"
+        - id: ede3792c-b431-4c2b-b76b-7f5508bc2ad1
+          role: user
+          text: '已知用户的配置号为：{{#conversation.CN#}}
+
+            用户诉求：{{#sys.query#}}
+
+            请根据已知信息回答用户诉求。如果已知信息无法回答，请直接根据你的知识回答。如果问题不清晰，可以要求用户提供更多细节。'
+        selected: false
+        title: LLM 1
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - sys
+            - files
+          enabled: true
+      height: 90
+      id: '1754457699663'
+      position:
+        x: 2656.66991013933
+        y: 895.6201524894859
+      positionAbsolute:
+        x: 2656.66991013933
+        y: 895.6201524894859
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1754457699663.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 5
+        type: answer
+        variables: []
+      height: 105
+      id: '1754457901502'
+      position:
+        x: 2975
+        y: 971.5
+      positionAbsolute:
+        x: 2975
+        y: 971.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        classes:
+        - id: '1'
+          name: 租赁
+        - id: '2'
+          name: 续租
+        - id: '1754458445422'
+          name: 退租退押
+        desc: ''
+        instructions: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-vl-max-latest
+          provider: langgenius/tongyi/tongyi
+        query_variable_selector:
+        - '1754442982613'
+        - sys.query
+        selected: false
+        title: 问题分类器
+        topics: []
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 210
+      id: '1754458428398'
+      position:
+        x: 2641
+        y: 405.4439367138168
+      positionAbsolute:
+        x: 2641
+        y: 405.4439367138168
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        classes:
+        - id: '1'
+          name: 问题咨询
+        - id: '2'
+          name: 配置号更改
+        - id: '1754458602862'
+          name: 其他
+        - id: '1754531618764'
+          name: ETERM/“黑屏”相关
+        desc: ''
+        instruction: 当输入“打错”，“输错”等类似词语时，或是直接输入一个配置号时，应首先判断是否是变更配置号。当客户问到具体的业务需求时，才变更到问题咨询。
+        instructions: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-vl-plus-latest
+          provider: langgenius/tongyi/tongyi
+        query_variable_selector:
+        - sys
+        - query
+        selected: false
+        title: 问题分类器 2
+        topics: []
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 248
+      id: '1754458521294'
+      position:
+        x: 2175.049208922711
+        y: 504.0706503046853
+      positionAbsolute:
+        x: 2175.049208922711
+        y: 504.0706503046853
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        instruction: 我希望你从{{#sys.query#}}或{{#sys.files#}}中找到输入的配置号，配置号的格式通常是一串字母或数字的组合，你只需要告诉我配置号，如果没有找到，则告诉我“无”。
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-vl-max-latest
+          provider: langgenius/tongyi/tongyi
+        parameters:
+        - description: 配置号信息
+          name: configurationNum
+          required: false
+          type: string
+        query:
+        - sys
+        - query
+        reasoning_mode: prompt
+        selected: false
+        title: 参数提取器 (1)
+        type: parameter-extractor
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - sys
+            - files
+          enabled: true
+      height: 90
+      id: '17544590724160'
+      position:
+        x: 2641
+        y: 1084
+      positionAbsolute:
+        x: 2641
+        y: 1084
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 613e07a4-2ebe-42a1-81a2-cf105b8c0db3
+            value: 无
+            varType: string
+            variable_selector:
+            - '17544590724160'
+            - configurationNum
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支 (1)
+        type: if-else
+      height: 126
+      id: '17544590751370'
+      position:
+        x: 2975
+        y: 1116.5
+      positionAbsolute:
+        x: 2975
+        y: 1116.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17544590724160'
+          - configurationNum
+          variable_selector:
+          - conversation
+          - CN
+          write_mode: over-write
+        selected: false
+        title: 变量赋值 (2)
+        type: assigner
+        version: '2'
+      height: 88
+      id: '17544590929760'
+      position:
+        x: 3977
+        y: 1132
+      positionAbsolute:
+        x: 3977
+        y: 1132
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: 您的配置号已更改为{{#conversation.CN#}}, 您可在[东立同行网](http://www.twflight.com/)-客户端中查看您的账户信息。
+        desc: ''
+        selected: false
+        title: 直接回复 2 (2)
+        type: answer
+        variables: []
+      height: 137
+      id: '17544592646160'
+      position:
+        x: 4311
+        y: 1115
+      positionAbsolute:
+        x: 4311
+        y: 1115
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: 配置租赁业务请联系客户经理。
+        desc: ''
+        selected: false
+        title: 直接回复 6
+        type: answer
+        variables: []
+      height: 102
+      id: '1754459401168'
+      position:
+        x: 2975
+        y: 494.5
+      positionAbsolute:
+        x: 2975
+        y: 494.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '配置续租业务详情请前往：
+
+          [东立同行网](http://www.twflight.com/)-客户端-客户端-续费
+
+          查看。'
+        desc: ''
+        selected: false
+        title: 直接回复 7
+        type: answer
+        variables: []
+      height: 134
+      id: '1754459404453'
+      position:
+        x: 2975
+        y: 636.5
+      positionAbsolute:
+        x: 2975
+        y: 636.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1754458428398.class_name#}}业务请联系客户经理。'
+        desc: ''
+        selected: false
+        title: 直接回复 8
+        type: answer
+        variables: []
+      height: 121
+      id: '1754459407704'
+      position:
+        x: 2975
+        y: 810.5
+      positionAbsolute:
+        x: 2975
+        y: 810.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1754531313654'
+          - result
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-vl-max-latest
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: 5569cdf2-612d-4f02-8b64-d1209249b5f4
+          role: system
+          text: "# Role: 企业微信客服智能助手\n\n## Profile\n- language: 中文\n- description:\
+            \ 一个专注于为企业微信客户提供高效、专业服务的智能助手，能够根据用户输入和知识库内容生成简洁、清晰的回复。\n- background:\
+            \ 随着企业微信的广泛应用，企业和客户之间的沟通需求日益增加。本角色旨在通过智能化手段提升客户服务效率，降低人工客服压力。\n- personality:\
+            \ 友好、耐心、专业且反应迅速。\n- expertise: 客服对话管理、信息检索、自然语言处理、知识库整合。\n- target_audience:\
+            \ 使用企业微信的企业客服团队及终端客户。\n\n## Skills\n\n1. 客服核心技能\n   - 快速响应: 能够在短时间内理解用户问题并提供准确解答。\n\
+            \   - 知识库整合: 熟练调用企业提供的知识库内容为用户提供精准答案。\n   - 多轮对话管理: 支持复杂场景下的多轮交互，确保上下文连贯性。\n\
+            \   - 情绪识别与应对: 能够感知用户情绪并调整回复语气，避免冲突升级。\n\n2. 辅助技能类别\n   - 信息提炼: 将复杂或冗长的信息压缩成简洁明了的内容。\n\
+            \   - 自学习能力: 根据历史对话数据不断优化回复策略。\n   - 数据安全保障: 严格遵守隐私保护政策，不泄露任何敏感信息。\n \
+            \  - 多渠道支持: 兼容多种沟通形式，如文字、图片、文件等。\n\n## Rules\n\n1. 基本原则：\n   - 准确性优先:\
+            \ 回复必须基于事实和知识库内容，杜绝猜测性回答。\n   - 简洁为主: 控制回复长度，以最简短的方式传达关键信息。\n   - 用户导向:\
+            \ 一切行为围绕提升用户体验展开，避免让用户感到困惑。\n   - 合规合法: 所有回复需符合相关法律法规以及公司内部规定。\n\n2. 行为准则：\n\
+            \   - 礼貌待人: 不论用户态度如何，始终保持友好和尊重。\n   - 主动引导: 当用户问题模糊时，应主动提问以获取更多信息。\n \
+            \  - 避免争执: 遇到争议性话题时，采取中立立场并尝试平息矛盾。\n   - 及时反馈: 若无法立即解决问题，应告知用户后续处理时间表。\n\
+            \n3. 限制条件：\n   - 不涉及敏感话题: 不讨论政治、宗教或其他可能引发争议的主题。\n   - 遵守权限范围: 只能访问授权的知识库内容，不可越权操作。\n\
+            \   - 无超纲承诺: 不得对未确认事项做出保证或承诺。\n   - 防止滥用: 拒绝参与任何形式的恶意刷屏或骚扰行为。\n\n## Workflows\n\
+            \n- 目标: 提供高质量的客户服务体验，快速解决用户问题。\n- 步骤 1: 接收用户输入，分析问题意图并匹配知识库相关内容。\n- 步骤\
+            \ 2: 根据匹配结果生成初步回复，并进行语法和逻辑校验。\n- 步骤 3: 发送回复给用户，同时记录对话日志用于后续优化。\n- 预期结果:\
+            \ 用户获得满意解答，整体服务效率显著提升。\n\n## Initialization\n作为企业微信客服智能助手，你必须遵守上述Rules，按照Workflows执行任务。"
+        - id: ede3792c-b431-4c2b-b76b-7f5508bc2ad1
+          role: user
+          text: '用户诉求：{{#sys.query#}}
+
+            你的已知信息：{{#context#}}
+
+            但是客户没有提供配置号。
+
+            请根据已知信息回答用户诉求。如果已知信息无法回答，请直接根据你的知识回答。如果问题不清晰，可以要求用户提供更多细节。'
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '17545302573570'
+      position:
+        x: 3836.680248659728
+        y: 971.5
+      positionAbsolute:
+        x: 3836.680248659728
+        y: 971.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#17545302573570.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 9
+        type: answer
+        variables: []
+      height: 105
+      id: '1754530310208'
+      position:
+        x: 4311
+        y: 970
+      positionAbsolute:
+        x: 4311
+        y: 970
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - H/eFH1Ls3SEnjITT3t5byHDsOeNOYWEQ6yw9zsepbCRWh+XDcuzeV9eEQVGYA/2M
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: gte-rerank-v2
+            provider: langgenius/tongyi/tongyi
+          score_threshold: null
+          top_k: 4
+        query_variable_selector:
+        - '1754442982613'
+        - sys.query
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索 2
+        type: knowledge-retrieval
+      height: 92
+      id: '1754531313654'
+      position:
+        x: 3415.000000000001
+        y: 980
+      positionAbsolute:
+        x: 3415.000000000001
+        y: 980
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - H/eFH1Ls3SEnjITT3t5byHDsOeNOYWEQ6yw9zsepbCRWh+XDcuzeV9eEQVGYA/2M
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: gte-rerank-v2
+            provider: langgenius/tongyi/tongyi
+          score_threshold: null
+          top_k: 4
+        query_variable_selector:
+        - '1754442982613'
+        - sys.query
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索 3
+        type: knowledge-retrieval
+      height: 92
+      id: '1754531658293'
+      position:
+        x: 2641
+        y: 1257
+      positionAbsolute:
+        x: 2641
+        y: 1257
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1754531658293'
+          - result
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-vl-max-latest
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: 538a4c93-c513-4529-b00c-c60763fa2f8a
+          role: system
+          text: "# Role: 企业微信客服智能助手\n\n## Profile\n- language: 中文\n- description:\
+            \ 一个专注于为企业微信客户提供高效、专业服务的智能助手，能够根据用户输入和知识库内容生成简洁、清晰的回复。\n- background:\
+            \ 随着企业微信的广泛应用，企业和客户之间的沟通需求日益增加。本角色旨在通过智能化手段提升客户服务效率，降低人工客服压力。\n- personality:\
+            \ 友好、耐心、专业且反应迅速。\n- expertise: 客服对话管理、信息检索、自然语言处理、知识库整合。\n- target_audience:\
+            \ 使用企业微信的企业客服团队及终端客户。\n\n## Skills\n\n1. 客服核心技能\n   - 快速响应: 能够在短时间内理解用户问题并提供准确解答。\n\
+            \   - 知识库整合: 熟练调用企业提供的知识库内容为用户提供精准答案。\n   - 多轮对话管理: 支持复杂场景下的多轮交互，确保上下文连贯性。\n\
+            \   - 情绪识别与应对: 能够感知用户情绪并调整回复语气，避免冲突升级。\n\n2. 辅助技能类别\n   - 信息提炼: 将复杂或冗长的信息压缩成简洁明了的内容。\n\
+            \   - 自学习能力: 根据历史对话数据不断优化回复策略。\n   - 数据安全保障: 严格遵守隐私保护政策，不泄露任何敏感信息。\n \
+            \  - 多渠道支持: 兼容多种沟通形式，如文字、图片、文件等。\n\n## Rules\n\n1. 基本原则：\n   - 准确性优先:\
+            \ 回复必须基于事实和知识库内容，杜绝猜测性回答。\n   - 简洁为主: 控制回复长度，以最简短的方式传达关键信息。\n   - 用户导向:\
+            \ 一切行为围绕提升用户体验展开，避免让用户感到困惑。\n   - 合规合法: 所有回复需符合相关法律法规以及公司内部规定。\n\n2. 行为准则：\n\
+            \   - 礼貌待人: 不论用户态度如何，始终保持友好和尊重。\n   - 主动引导: 当用户问题模糊时，应主动提问以获取更多信息。\n \
+            \  - 避免争执: 遇到争议性话题时，采取中立立场并尝试平息矛盾。\n   - 及时反馈: 若无法立即解决问题，应告知用户后续处理时间表。\n\
+            \n3. 限制条件：\n   - 不涉及敏感话题: 不讨论政治、宗教或其他可能引发争议的主题。\n   - 遵守权限范围: 只能访问授权的知识库内容，不可越权操作。\n\
+            \   - 无超纲承诺: 不得对未确认事项做出保证或承诺。\n   - 防止滥用: 拒绝参与任何形式的恶意刷屏或骚扰行为。\n\n## Workflows\n\
+            \n- 目标: 提供高质量的客户服务体验，快速解决用户问题。\n- 步骤 1: 接收用户输入，分析问题意图并匹配知识库相关内容。\n- 步骤\
+            \ 2: 根据匹配结果生成初步回复，并进行语法和逻辑校验。\n- 步骤 3: 发送回复给用户，同时记录对话日志用于后续优化。\n- 预期结果:\
+            \ 用户获得满意解答，整体服务效率显著提升。\n\n## Initialization\n作为企业微信客服智能助手，你必须遵守上述Rules，按照Workflows执行任务。"
+        - id: b4006e6f-f4ac-4fce-b5a7-1583f7de38e3
+          role: user
+          text: '用户诉求：{{#sys.query#}}
+
+            你的已知信息：{{#context#}}
+
+            请根据已知信息回答用户诉求。如果已知信息无法回答，请直接根据你的知识回答。如果知识库中有相关信息，请严格按照知识库中的信息回答，不得更改知识库的描述。如果问题不清晰，可以要求用户提供更多细节。'
+        selected: false
+        title: LLM 3
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - sys
+            - files
+          enabled: true
+      height: 90
+      id: '1754531675324'
+      position:
+        x: 2975
+        y: 1282.5
+      positionAbsolute:
+        x: 2975
+        y: 1282.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1754531675324.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 10
+        type: answer
+        variables: []
+      height: 105
+      id: '1754531826838'
+      position:
+        x: 3309
+        y: 1257.5
+      positionAbsolute:
+        x: 3309
+        y: 1257.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -286.25678193301997
+      y: 206.34222543601322
+      zoom: 0.5743491774985178
